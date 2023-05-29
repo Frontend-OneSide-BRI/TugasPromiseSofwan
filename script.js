@@ -56,6 +56,7 @@ const user = [
     return res;
   }
   
+  //promise
   login("sofwan")
     .then((user) => {
       console.log(user[0]);
@@ -72,3 +73,17 @@ const user = [
       console.log(err);
     });
   
+  //async await
+  async function getDetailTransaction(){
+      const loginUser = await login("sofwan")
+      const transactionUser = await getTransactions(loginUser[0].id)
+      const detailTransactionUser = await getTransactionDetails(transactionUser[0].id)
+  
+      console.log(detailTransactionUser)
+  }
+  
+  getDetailTransaction().catch(
+      err =>{
+          console.log(err.message)
+      }
+  )
